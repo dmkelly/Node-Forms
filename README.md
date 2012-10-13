@@ -76,12 +76,17 @@ Example
 	}
   };
   
-  var reg = new forms.RegisterForm(req.body);
-  reg.save(function(err) {
-    if(err) {
-	  handleErr(err);
-      return;
-    }
-    // Respond to user.
+  
+  // In a function to handle a POST request...
+  app.post('/register', function(req, res) {  
+    var reg = new forms.RegisterForm(req.body);
+    reg.save(function(err) {
+      if(err) {
+	    handleErr(err);
+        return;
+      }
+      // Respond to user.
+      res.redirect('/');
+    });
   });
 ```
